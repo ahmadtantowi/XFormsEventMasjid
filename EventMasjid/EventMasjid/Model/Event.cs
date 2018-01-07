@@ -6,7 +6,9 @@ namespace EventMasjid.Model
 {
     public class Event
     {
-        public int Id_Event { get; set; }
+        public string Id_Event { get; set; }
+
+        public string Uname_Dkm { get; set; }
 
         public string Dkm_Pelaksana { get; set; }
 
@@ -14,10 +16,12 @@ namespace EventMasjid.Model
 
         public string Pemateri { get; set; }
 
+        public string Gambar { get; set; }
+
         public string Lokasi_Event { get; set; }
 
         public string Tlp_Event { get; set; }
 
-        public DateTime Waktu_Event { get; set; }
+        public string Waktu_Event { get; set; }
     }
 }

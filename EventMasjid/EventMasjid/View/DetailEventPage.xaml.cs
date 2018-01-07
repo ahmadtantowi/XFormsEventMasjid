@@ -17,10 +17,12 @@ namespace EventMasjid.View
 		{
 			InitializeComponent ();
 
+            imgDetail.Source = events.Gambar;
             lblPelaksana.Text = events.Dkm_Pelaksana;
             lblAcara.Text = events.Nama_Event;
             lblPemateri.Text = events.Pemateri;
-            lblWaktu.Text = events.Waktu_Event.ToString("hh:mm dd MMMM yyyy");
+            lblWaktu.Text = events.Waktu_Event;
+            //lblWaktu.Text = events.Waktu_Event.ToString("hh:mm dd MMMM yyyy");
             lblKontak.Text = events.Tlp_Event;
             lblLokasi.Text = events.Lokasi_Event;
 		}

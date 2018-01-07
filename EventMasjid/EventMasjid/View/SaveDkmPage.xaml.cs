@@ -12,11 +12,24 @@ using Xamarin.Forms.Xaml;
 namespace EventMasjid.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AddDkmPage : ContentPage
+	public partial class SaveDkmPage : ContentPage
 	{
-		public AddDkmPage ()
+        bool isNewDkm;
+
+		public SaveDkmPage (bool isNewDkm = false)
 		{
 			InitializeComponent ();
+            this.isNewDkm = isNewDkm;
+
+            lblUname.Text = isNewDkm ? null : MyDkm.Uname_Dkm;
+            lblPword.Text = isNewDkm ? null : MyDkm.Pass_Dkm;
+            lblDkm.Text = isNewDkm ? null : MyDkm.Masjid_Dkm;
+            lblAlamat.Text = isNewDkm ? null : MyDkm.Alamat_Dkm;
+            lblTelp.Text = isNewDkm ? null : MyDkm.Tlp_Dkm;
+            lblEmail.Text = isNewDkm ? null : MyDkm.Email_Dkm;
+            lblKetua.Text = isNewDkm ? null : MyDkm.Ketua_Dkm;
+
+            lblUname.IsEnabled = isNewDkm ? true : false;
 		}
 
         async void BtnTambahkan (object sender, EventArgs e)
@@ -33,7 +46,7 @@ namespace EventMasjid.View
             };
 
             DataService service = new DataService();
-            if (await service.SaveDkm(addDkm, true))
+            if (await service.SaveDkm(addDkm, isNewDkm))
             {
                 await DisplayAlert("Info", "Data berhasil disimpan", "OK");
             }
@@ -45,7 +58,7 @@ namespace EventMasjid.View
 
         void BtnBatalkan(object sender, EventArgs e)
         {
-            Navigation.PopModalAsync(true);
+            Navigation.PopAsync(true);
         }
     }
 }

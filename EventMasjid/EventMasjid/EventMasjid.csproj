@@ -21,16 +21,25 @@
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="MainPage.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
+    <Compile Update="View\SaveDkmPage.xaml.cs">
+      <DependentUpon>SaveDkmPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\DkmEventPage.xaml.cs">
+      <DependentUpon>DkmEventPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\SaveEventPage.xaml.cs">
+      <DependentUpon>SaveEventPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="View\AboutPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\AddDkmPage.xaml">
+    <EmbeddedResource Update="View\SaveDkmPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\AddEventPage.xaml">
+    <EmbeddedResource Update="View\SaveEventPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\DetailEventPage.xaml">
@@ -40,6 +49,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\DkmEventPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

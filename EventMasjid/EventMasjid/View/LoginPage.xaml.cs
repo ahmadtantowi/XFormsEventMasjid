@@ -26,9 +26,9 @@ namespace EventMasjid.View
             {
                 CrossSettings.Current.AddOrUpdateValue("isLogin", true);
 
-                //await Navigation.PushAsync(new AboutPage());
                 lblNotif.Text = "Login berhasil!";
                 lblNotif.TextColor = Color.Green;
+                await Navigation.PushAsync(new DkmEventPage());
             }
             else
             {
@@ -40,12 +40,12 @@ namespace EventMasjid.View
 
         void BtnBuatkan(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new AddDkmPage());
+            Navigation.PushAsync(new SaveDkmPage(true));
         }
 
         void BtnBatalkan(object sender, EventArgs e)
         {
-            Navigation.PopModalAsync(true);
+            Navigation.PopAsync(true);
         }
     }
 }

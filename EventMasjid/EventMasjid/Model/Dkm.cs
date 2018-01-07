@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EventMasjid.Model
 {
-    class Dkm
+    public class Dkm
     {
         public string Id_Dkm { get; set; }
 

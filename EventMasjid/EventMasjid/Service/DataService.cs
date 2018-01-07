@@ -1,6 +1,7 @@
 ﻿using EventMasjid.Helper;
 using EventMasjid.Model;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -22,16 +23,31 @@ namespace EventMasjid.Service
                 try
                 {
                     var respone = await client.GetAsync(uriLogin);
-                    Debug.WriteLine(uriLogin.ToString());
-                    Debug.WriteLine(respone.ToString());
 
                     if (!respone.IsSuccessStatusCode)
                         return false;
 
                     var byteResult = await respone.Content.ReadAsByteArrayAsync();
                     var result = Encoding.UTF8.GetString(byteResult, 0, byteResult.Length);
-                    var modelResult = JsonConvert.DeserializeObject<List<Event>>(result);
-                    Debug.WriteLine(result.ToString());
+
+                    var modelResult = JsonConvert.DeserializeObject<List<Dkm>>(result);
+                    Dkm myDkm = modelResult[0];
+
+                    //jangan ditiru, coba pelajari lagi desgin pattern MVVM
+                    MyDkm.Id_Dkm = myDkm.Id_Dkm;
+                    MyDkm.Uname_Dkm = myDkm.Uname_Dkm;
+                    MyDkm.Pass_Dkm = myDkm.Pass_Dkm;
+                    MyDkm.Alamat_Dkm = myDkm.Alamat_Dkm;
+                    MyDkm.Tlp_Dkm = myDkm.Tlp_Dkm;
+                    MyDkm.Email_Dkm = myDkm.Email_Dkm;
+                    MyDkm.Ketua_Dkm = myDkm.Ketua_Dkm;
+                    MyDkm.Masjid_Dkm = myDkm.Masjid_Dkm;
+
+
+                    Debug.WriteLine("URI login: " + uriLogin.ToString());
+                    Debug.WriteLine("Respon service: " + respone.ToString());
+                    Debug.WriteLine("Hasilnya: " + result.ToString());
+                    Debug.WriteLine("Id_Dkm:{0} Uname_Dkm:{1}", myDkm.Id_Dkm, myDkm.Uname_Dkm);
 
                     return true;
                 }
@@ -41,65 +57,6 @@ namespace EventMasjid.Service
                     return false;
                 }
             }
-
-            ////add
-            //object userInfos = new { uname = username, pword = password };
-            //var jsonObj = JsonConvert.SerializeObject(userInfos);
-            //using (HttpClient client = new HttpClient())
-            //{
-            //    StringContent content = new StringContent(jsonObj.ToString(), Encoding.UTF8, "application/json");
-            //    var request = new HttpRequestMessage()
-            //    {
-            //        RequestUri = new Uri(UrlHelper.DKM_URL_LOGIN),
-            //        Method = HttpMethod.Post,
-            //        Content = content
-            //    };
-            //    //you can add headers                
-            //    //request.Headers.Add("Client-Services", "fortend-client");
-            //    //request.Headers.Add("Auth-Key", "mapro");
-
-            //    var response = await client.SendAsync(request);
-            //    Debug.WriteLine(response.ToString());
-            //    if (!response.IsSuccessStatusCode)
-            //        return false;
-            //    return true;
-
-            //    //string dataResult = response.Content.ReadAsStringAsync().Result;
-            //    //bool result = JsonConvert.DeserializeObject<bool>(dataResult);
-            //    //return result;
-            //}
-
-            //using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) })
-            //{
-            //    try
-            //    {
-            //        var loginDict = new Dictionary<string, string> { { "username", username }, { "password", password } };
-            //        var postData = JsonConvert.SerializeObject(loginDict);
-            //        HttpContent stringContent = new StringContent(postData);
-            //        stringContent.Headers.Add("Client-Services", "fortend-client");
-            //        stringContent.Headers.Add("Auth-Key", "mapro");
-            //        stringContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-
-            //        var builder = new UriBuilder(new Uri(UrlHelper.LOGIN_URL));
-            //        var respone = await client.PostAsync(builder.Uri, stringContent);
-            //        Debug.WriteLine(respone.ToString());
-
-            //        if (!respone.IsSuccessStatusCode)
-            //            return false;
-
-            //        //var byteResult = await respone.Content.ReadAsByteArrayAsync();
-            //        //var result = Encoding.UTF8.GetString(byteResult, 0, byteResult.Length);
-
-            //        //if (!result.Equals("Successfully login.", StringComparison.OrdinalIgnoreCase))
-            //        //    return false;
-
-            //        return true;
-            //    }
-            //    catch (Exception exc)
-            //    {
-            //        return false;
-            //    }
-            //}
         }
 
         public async Task<List<Dkm>> GetListDkm()
@@ -120,11 +77,11 @@ namespace EventMasjid.Service
                     var result = Encoding.UTF8.GetString(byteResult, 0, byteResult.Length);
                     var modelResult = JsonConvert.DeserializeObject<List<Dkm>>(result);
 
-
                     return modelResult;
                 }
                 catch (Exception ex)
                 {
+                    Debug.WriteLine(@"Kesalahan {0}", ex.Message);
                     return null;
                 }
             }
@@ -146,14 +103,46 @@ namespace EventMasjid.Service
 
                     var byteResult = await response.Content.ReadAsByteArrayAsync();
                     var result = Encoding.UTF8.GetString(byteResult, 0, byteResult.Length);
+                    Debug.WriteLine(result.ToString());
                     var modelResult = JsonConvert.DeserializeObject<List<Event>>(result);
 
-                    Debug.WriteLine(result.ToString());
+                    Debug.WriteLine("URI List Event" + builder.ToString());
 
                     return modelResult;
                 }
                 catch (Exception ex)
                 {
+                    Debug.WriteLine(@"Kesalahan {0}", ex.Message);
+                    return null;
+                }
+            }
+        }
+
+        public async Task<List<Event>> GetMyEvent()
+        {
+            using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(60) })
+            {
+                try
+                {
+                    //Accept application/json only
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    var builder = new UriBuilder(string.Format(UrlHelper.DKM_URL_EVENT, MyDkm.Uname_Dkm));
+                    var response = await client.GetAsync(builder.Uri);
+
+                    if (!response.IsSuccessStatusCode)
+                        return null;
+
+                    var byteResult = await response.Content.ReadAsByteArrayAsync();
+                    var result = Encoding.UTF8.GetString(byteResult, 0, byteResult.Length);
+                    var modelResult = JsonConvert.DeserializeObject<List<Event>>(result);
+
+                    Debug.WriteLine("URI My Event: " + builder.ToString());
+
+                    return modelResult;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(@"Kesalahan {0}", ex.Message);
                     return null;
                 }
             }
@@ -261,5 +250,24 @@ namespace EventMasjid.Service
                 }
             }
         }
+    }
+
+    public static class MyDkm
+    {
+        public static string Id_Dkm { get; set; }
+
+        public static string Uname_Dkm { get; set; }
+
+        public static string Pass_Dkm { get; set; }
+
+        public static string Alamat_Dkm { get; set; }
+
+        public static string Tlp_Dkm { get; set; }
+
+        public static string Email_Dkm { get; set; }
+
+        public static string Ketua_Dkm { get; set; }
+
+        public static string Masjid_Dkm { get; set; }
     }
 }

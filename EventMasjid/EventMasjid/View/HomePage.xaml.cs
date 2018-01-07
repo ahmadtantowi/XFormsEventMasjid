@@ -20,32 +20,22 @@ namespace EventMasjid.View
 		{
 			InitializeComponent ();
 
-            //DkmViewModel dkmViewModel = new DkmViewModel();
-            //dkmViewModel.Load();
-
             EventViewModel eventViewModel = new EventViewModel();
-            eventViewModel.Load();
-
+            eventViewModel.LoadAll();
             BindingContext = eventViewModel;
 
             var isLogin = CrossSettings.Current.GetValueOrDefault("isLogin", false);
-            if (isLogin)
-            {
-                tiDkmEvent.IsDestructive = true;
-            }
-            else
-            {
-                tiDkmEvent.IsDestructive = false;
-            }
 
-            tiSegarkan.Clicked += async (sender, e) => await eventViewModel.Load();
+            tiSegarkan.Clicked += async (sender, e) => await eventViewModel.LoadAll();
+            tiTambah.Clicked += async (sender, e) => await Navigation.PushAsync(new SaveEventPage(new Event(), true));
 		}
 
         protected void PadaItemDipilih(object sender, SelectedItemChangedEventArgs args)
         {
             var selectedItem = args.SelectedItem as Event;
-            //Debug.WriteLine("id:{0} nama:{1} waktu:{2} pemateri:{3} telp:{4} lokasi{5}",
-            //    selectedItem.Id_Event, selectedItem.Nama_Event, selectedItem.Waktu_Event, selectedItem.Pemateri, selectedItem.Tlp_Event, selectedItem.Lokasi_Event);
+            //Debug.WriteLine("id:{0} nama:{1} waktu:{2} pemateri:{3} telp:{4} lokasi:{5} gambar:{6}", 
+            //    selectedItem.Id_Event, selectedItem.Nama_Event, selectedItem.Waktu_Event, selectedItem.Pemateri, selectedItem.Tlp_Event, selectedItem.Lokasi_Event, selectedItem.Gambar);
+            //Debug.WriteLine(selectedItem.ToString());
 
             if (selectedItem != null)
             {
@@ -64,7 +54,7 @@ namespace EventMasjid.View
             string type = (string)((ToolbarItem)sender).CommandParameter;
             Type pageType = Type.GetType("EventMasjid.View." + type, true);
             Page page = (Page)Activator.CreateInstance(pageType);
-            await this.Navigation.PushModalAsync(page);
+            await this.Navigation.PushAsync(page);
         }
     }
 }

@@ -1,14 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EventMasjid.View.HomePage"
-             Title="Event Masjid">
+             x:Class="EventMasjid.View.DkmEventPage"
+             Title="Acara DKM saya">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Segarkan" Order="Primary" x:Name="tiSegarkan"/>
-        <ToolbarItem Text="Tambah" Order="Primary" x:Name="tiTambah"/>
-        <ToolbarItem Text="Acara Saya" Order="Secondary" Clicked="Navigasikan" CommandParameter="DkmEventPage" x:Name="tiDkmEvent"/>
-        <ToolbarItem Text="Tentang" Order="Secondary" Clicked="Navigasikan" CommandParameter="AboutPage"/>
-        <ToolbarItem Text="Login DKM" Order="Secondary" Clicked="Navigasikan" CommandParameter="LoginPage"/>
+        <ToolbarItem Text="Tambah acara" Order="Secondary" x:Name="tiTambahkan"/>
+        <ToolbarItem Text="Lihat profil" Order="Secondary" x:Name="tiProfil"/>
+        <ToolbarItem Text="Keluar akun" Order="Secondary" x:Name="tiKeluarkan"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ListView ItemsSource="{Binding Events}" ItemSelected="PadaItemDipilih" RowHeight="150" IsPullToRefreshEnabled="True">
@@ -18,10 +16,9 @@
                         <StackLayout Orientation="Horizontal" Padding="10">
                             <Image Source="{Binding Gambar}" WidthRequest="100" HeightRequest="100" VerticalOptions="Start"/>
                             <StackLayout Orientation="Vertical" Margin="5,0,0,0">
-                                <Label Text="{Binding Dkm_Pelaksana}" FontSize="12"/>
+                                <Label Text="{Binding Dkm_Pelaksana}" FontSize="12" IsEnabled="False"/>
                                 <Label Text="{Binding Nama_Event}" FontSize="Medium" FontAttributes="Bold"/>
                                 <Label Text="{Binding Waktu_Event, StringFormat='{0:hh:mm dd MMMM yyyy}'}"/>
-                                <!--<Label Text="{Binding Tanggal_Event, StringFormat='{0:dd MMMM yyyy}'}"/>-->
                                 <Label Text="{Binding Pemateri}"/>
                                 <Label Text="{Binding Lokasi_Event}"/>
                             </StackLayout>

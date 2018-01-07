@@ -28,10 +28,16 @@ namespace EventMasjid.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public async Task Load()
+        public async Task LoadAll()
         {
             var service = new DataService();
             Events = await service.GetListEvent();
+        }
+
+        public async Task LoadByDkm()
+        {
+            var service = new DataService();
+            Events = await service.GetMyEvent();
         }
     }
 }
