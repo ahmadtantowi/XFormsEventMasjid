@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventMasjid.View.AddEventPage"
+             Title="Tambah Acara">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout  x:Name="slDetail" Padding="10" Orientation="Vertical">
+                <Label Text="Buat Acara Baru" FontSize="Medium" />
+                <Label Text=" "/>
+                <Image x:Name="imgDetail" Source="Gambar/icon.png" Margin="0,0,0,5" HorizontalOptions="FillAndExpand"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Pelaksana:"/>
+                    <Label Grid.Row="1" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Acara:"/>
+                    <Label Grid.Row="2" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Pemateri:"/>
+                    <Label Grid.Row="3" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Waktu dan tanggal:"/>
+                    <Label Grid.Row="4" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Kontak:"/>
+                    <Label Grid.Row="5" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Lokasi:"/>
+
+                    <Entry Grid.Row="0" Grid.Column="1" FontSize="Small" x:Name="lblPelaksana" IsEnabled="True"/>
+                    <Entry Grid.Row="1" Grid.Column="1" FontSize="Small" x:Name="lblAcara"/>
+                    <Entry Grid.Row="2" Grid.Column="1" FontSize="Small" x:Name="lblPemateri"/>
+                    <StackLayout Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                        <TimePicker x:Name="lblWaktu" Format="24"/>
+                        <DatePicker x:Name="lblTanggal"/>
+                    </StackLayout>
+                    <Entry Grid.Row="4" Grid.Column="1" FontSize="Small" x:Name="lblKontak"/>
+                    <Entry Grid.Row="5" Grid.Column="1" FontSize="Small" x:Name="lblLokasi"/>
+
+                    <StackLayout Grid.Row="6" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End">
+                        <Button Text="Tambah" WidthRequest="120" Clicked="BtnTambahkan" BackgroundColor="Blue" TextColor="White"/>
+                        <Button Text="Batal" WidthRequest="120" Clicked="BtnBatalkan"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

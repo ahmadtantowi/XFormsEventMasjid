@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.Settings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,9 @@ namespace EventMasjid
 		{
 			InitializeComponent();
 
-			MainPage = new EventMasjid.MainPage();
-		}
+            MainPage = new NavigationPage(new View.HomePage());
+            //MainPage = new NavigationPage(new View.AddEventPage());
+        }
 
 		protected override void OnStart ()
 		{

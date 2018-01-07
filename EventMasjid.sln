@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2003
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventMasjid.Android", "EventMasjid\EventMasjid.Android\EventMasjid.Android.csproj", "{FF49370D-1908-4652-9A8A-86494CC5B9B0}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventMasjid.iOS", "EventMas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventMasjid.UWP", "EventMasjid\EventMasjid.UWP\EventMasjid.UWP.csproj", "{6F5D0AB1-1815-4536-B83B-1167CD5CF2AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventMasjid", "EventMasjid\EventMasjid\EventMasjid.csproj", "{CB97EAE1-B442-4D92-8BD9-DE3B2A7312F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventMasjid", "EventMasjid\EventMasjid\EventMasjid.csproj", "{CB97EAE1-B442-4D92-8BD9-DE3B2A7312F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

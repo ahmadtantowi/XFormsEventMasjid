@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventMasjid.View.DetailEventPage"
+             Title="Rincian Event">
+    <ContentPage.Content>
+        <!--<VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="slDetail.Orientation" Value="Horizontal"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>-->
+        <StackLayout x:Name="slDetail" Padding="10" Orientation="Vertical">
+            <Image x:Name="imgDetail" Source="Gambar/icon.png" Margin="0,0,0,5" HorizontalOptions="FillAndExpand"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Pelaksana:"/>
+                <Label Grid.Row="1" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Acara:"/>
+                <Label Grid.Row="2" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Pemateri:"/>
+                <Label Grid.Row="3" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Waktu:"/>
+                <Label Grid.Row="4" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Kontak:"/>
+                <Label Grid.Row="5" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Lokasi:"/>
+
+                <Label Grid.Row="0" Grid.Column="1" FontSize="Small" x:Name="lblPelaksana"/>
+                <Label Grid.Row="1" Grid.Column="1" FontSize="Small" x:Name="lblAcara"/>
+                <Label Grid.Row="2" Grid.Column="1" FontSize="Small" x:Name="lblPemateri"/>
+                <Label Grid.Row="3" Grid.Column="1" FontSize="Small" x:Name="lblWaktu"/>
+                <Label Grid.Row="4" Grid.Column="1" FontSize="Small" x:Name="lblKontak"/>
+                <Label Grid.Row="5" Grid.Column="1" FontSize="Small" x:Name="lblLokasi"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

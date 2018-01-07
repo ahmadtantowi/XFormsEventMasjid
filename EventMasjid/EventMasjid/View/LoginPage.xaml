@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventMasjid.View.LoginPage"
+             Title="Masuk sebagai DKM">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Label Text="Masuk Sebagai DKM" FontSize="Medium" />
+            <Label Text=" "/>
+            <Entry x:Name="uname" Placeholder="Nama akun DKM" Completed="BtnMasukkan"/>
+            <Entry x:Name="pword" Placeholder="Kata sandi" IsPassword="True" Completed="BtnMasukkan"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                <Button WidthRequest="120" Text="Masuk" BackgroundColor="Blue" TextColor="White" Clicked="BtnMasukkan"/>
+                <Button WidthRequest="120" Text="Batal" Clicked="BtnBatalkan"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                <Button WidthRequest="245" Text="Buat Akun Baru" Clicked="BtnBuatkan"/>
+            </StackLayout>
+            <Label x:Name="lblNotif"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
