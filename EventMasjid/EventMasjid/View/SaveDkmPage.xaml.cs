@@ -49,6 +49,10 @@ namespace EventMasjid.View
             if (await service.SaveDkm(addDkm, isNewDkm))
             {
                 await DisplayAlert("Info", "Data berhasil disimpan", "OK");
+
+                if (isNewDkm)
+                    Navigation.InsertPageBefore(new DkmEventPage(), this);
+                await Navigation.PopAsync();
             }
             else
             {

@@ -28,7 +28,8 @@ namespace EventMasjid.View
 
                 lblNotif.Text = "Login berhasil!";
                 lblNotif.TextColor = Color.Green;
-                await Navigation.PushAsync(new DkmEventPage());
+                Navigation.InsertPageBefore(new DkmEventPage(), this);
+                await Navigation.PopAsync();
             }
             else
             {
@@ -40,7 +41,8 @@ namespace EventMasjid.View
 
         void BtnBuatkan(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new SaveDkmPage(true));
+            Navigation.InsertPageBefore(new SaveDkmPage(true), this);
+            Navigation.PopAsync();
         }
 
         void BtnBatalkan(object sender, EventArgs e)

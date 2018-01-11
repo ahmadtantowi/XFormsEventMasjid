@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -21,7 +22,7 @@ namespace EventMasjid.Model
         public string Lokasi_Event { get; set; }
 
         public string Tlp_Event { get; set; }
-
+        
         public string Waktu_Event { get; set; }
     }
 }

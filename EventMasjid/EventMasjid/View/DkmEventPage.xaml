@@ -4,8 +4,10 @@
              x:Class="EventMasjid.View.DkmEventPage"
              Title="Acara DKM saya">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Tambah acara" Order="Secondary" x:Name="tiTambahkan"/>
-        <ToolbarItem Text="Lihat profil" Order="Secondary" x:Name="tiProfil"/>
+        <ToolbarItem Text="Segarkan" Order="Primary" Icon="Gambar/appbar.refresh.png" x:Name="tiSegarkan"/>
+        <ToolbarItem Text="Tambah acara" Order="Primary" Icon="Gambar/appbar.add.png" CommandParameter="SaveEventPage"/>
+        <ToolbarItem Text="Tentang" Order="Secondary" Clicked="Navigasikan" CommandParameter="AboutPage"/>
+        <ToolbarItem Text="Lihat profil" Order="Secondary" CommandParameter="SaveDkmPage"/>
         <ToolbarItem Text="Keluar akun" Order="Secondary" x:Name="tiKeluarkan"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>

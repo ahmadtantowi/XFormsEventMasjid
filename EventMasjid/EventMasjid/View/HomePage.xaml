@@ -4,11 +4,9 @@
              x:Class="EventMasjid.View.HomePage"
              Title="Event Masjid">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Segarkan" Order="Primary" x:Name="tiSegarkan"/>
-        <ToolbarItem Text="Tambah" Order="Primary" x:Name="tiTambah"/>
-        <ToolbarItem Text="Acara Saya" Order="Secondary" Clicked="Navigasikan" CommandParameter="DkmEventPage" x:Name="tiDkmEvent"/>
+        <ToolbarItem Text="Segarkan" Order="Primary" x:Name="tiSegarkan" Icon="Gambar/appbar.refresh.png"/>
+        <ToolbarItem Text="Kelola Acara" Order="Secondary" Clicked="Navigasikan" CommandParameter="DkmEventPage"/>
         <ToolbarItem Text="Tentang" Order="Secondary" Clicked="Navigasikan" CommandParameter="AboutPage"/>
-        <ToolbarItem Text="Login DKM" Order="Secondary" Clicked="Navigasikan" CommandParameter="LoginPage"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ListView ItemsSource="{Binding Events}" ItemSelected="PadaItemDipilih" RowHeight="150" IsPullToRefreshEnabled="True">
@@ -21,7 +19,6 @@
                                 <Label Text="{Binding Dkm_Pelaksana}" FontSize="12"/>
                                 <Label Text="{Binding Nama_Event}" FontSize="Medium" FontAttributes="Bold"/>
                                 <Label Text="{Binding Waktu_Event, StringFormat='{0:hh:mm dd MMMM yyyy}'}"/>
-                                <!--<Label Text="{Binding Tanggal_Event, StringFormat='{0:dd MMMM yyyy}'}"/>-->
                                 <Label Text="{Binding Pemateri}"/>
                                 <Label Text="{Binding Lokasi_Event}"/>
                             </StackLayout>

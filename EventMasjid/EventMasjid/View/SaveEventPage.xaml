@@ -6,8 +6,6 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout  x:Name="slDetail" Padding="10" Orientation="Vertical">
-                <Label Text="Buat Acara Baru" FontSize="Medium" />
-                <Label Text=" "/>
                 <Image x:Name="imgDetail" Source="Gambar/icon.png" Margin="0,0,0,5" HorizontalOptions="FillAndExpand"/>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -25,14 +23,14 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="0" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Pelaksana:" IsEnabled="False"/>
+                    <Label Grid.Row="0" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Pelaksana:"/>
                     <Label Grid.Row="1" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Acara:"/>
                     <Label Grid.Row="2" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Pemateri:"/>
                     <Label Grid.Row="3" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Waktu dan tanggal:"/>
                     <Label Grid.Row="4" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Kontak:"/>
                     <Label Grid.Row="5" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Lokasi:"/>
 
-                    <Entry Grid.Row="0" Grid.Column="1" FontSize="Small" x:Name="lblPelaksana" IsEnabled="True"/>
+                    <Entry Grid.Row="0" Grid.Column="1" FontSize="Small" x:Name="lblPelaksana" IsEnabled="False"/>
                     <Entry Grid.Row="1" Grid.Column="1" FontSize="Small" x:Name="lblAcara"/>
                     <Entry Grid.Row="2" Grid.Column="1" FontSize="Small" x:Name="lblPemateri"/>
                     <StackLayout Grid.Row="3" Grid.Column="1" Orientation="Horizontal">

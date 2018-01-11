@@ -10,6 +10,8 @@ namespace EventMasjid.Helper
 
         public const string LOGIN_URL = BASE_URL + "auth/login/";
 
+        public const string EDIT_URL = BASE_URL + "Edit";
+
         public const string DKM_URL = BASE_URL + "Dkm";
 
         public const string DKM_URL_LOGIN = BASE_URL + "Dkm?Uname_Dkm={0}&Pass_Dkm={1}";

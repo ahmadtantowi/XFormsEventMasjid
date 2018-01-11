@@ -151,13 +151,13 @@ namespace EventMasjid.Service
         /// <summary>
         /// Service untuk menyimpan data Event Masjid dengan method POST dan PUT
         /// </summary>
-        /// <param name="events">data yang akan disimpan</param>
+        /// <param name="events">data event yang akan disimpan</param>
         /// <param name="isNewEvent">true:POST; false:PUT</param>
         /// <returns></returns>
         public async Task<bool> SaveEvent(Event events, bool isNewEvent = false)
         {
-            var uriPost = new Uri(string.Format(UrlHelper.EVENT_URL_CRUD, string.Empty));
-            var uriPut = new Uri(string.Format(UrlHelper.EVENT_URL_CRUD, events.Id_Event));
+            var uriPost = new Uri(string.Format(UrlHelper.EVENT_URL));
+            var uriPut = new Uri(string.Format(UrlHelper.EDIT_URL));
 
             using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(60) })
             {
@@ -215,10 +215,16 @@ namespace EventMasjid.Service
             }
         }
 
+        /// <summary>
+        /// Service untuk menyimpan data Event Masjid dengan method POST dan PUT
+        /// </summary>
+        /// <param name="dkm">data dkm yang akan disimpan</param>
+        /// <param name="isNewDkm">true:POST; false:PUT</param>
+        /// <returns></returns>
         public async Task<bool> SaveDkm(Dkm dkm, bool isNewDkm = false)
         {
-            var uriPost = new Uri(string.Format(UrlHelper.DKM_URL_CRUD, string.Empty));
-            var uriPut = new Uri(string.Format(UrlHelper.DKM_URL_CRUD, dkm.Id_Dkm));
+            var uriPost = new Uri(string.Format(UrlHelper.DKM_URL));
+            var uriPut = new Uri(string.Format(UrlHelper.EDIT_URL));
 
             using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(60) })
             {

@@ -6,8 +6,6 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout  x:Name="slAdd" Padding="10" Orientation="Vertical">
-                <Label Text="Buat Akun DKM Baru" FontSize="Medium" />
-                <Label Text=" "/>
                 <Image x:Name="imgAdd" Source="Gambar/icon.png" Margin="0,0,0,5" HorizontalOptions="FillAndExpand"/>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -42,7 +40,7 @@
                     <Entry Grid.Row="6" Grid.Column="1" FontSize="Small" x:Name="lblAlamat"/>
 
                     <StackLayout Grid.Row="7" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End">
-                        <Button Text="Tambah" WidthRequest="120" Clicked="BtnTambahkan" BackgroundColor="Blue" TextColor="White"/>
+                        <Button Text="Simpan" WidthRequest="120" Clicked="BtnTambahkan" BackgroundColor="Blue" TextColor="White"/>
                         <Button Text="Batal" WidthRequest="120" Clicked="BtnBatalkan"/>
                     </StackLayout>
                 </Grid>

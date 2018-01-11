@@ -5,8 +5,6 @@
              Title="Masuk sebagai DKM">
     <ContentPage.Content>
         <StackLayout Padding="10">
-            <Label Text="Masuk Sebagai DKM" FontSize="Medium" />
-            <Label Text=" "/>
             <Entry x:Name="uname" Placeholder="Nama akun DKM" Completed="BtnMasukkan"/>
             <Entry x:Name="pword" Placeholder="Kata sandi" IsPassword="True" Completed="BtnMasukkan"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="End">

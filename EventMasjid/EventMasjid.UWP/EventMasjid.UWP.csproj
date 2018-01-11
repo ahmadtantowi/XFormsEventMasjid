@@ -104,6 +104,8 @@
     <None Include="EventMasjid.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Gambar\appbar.add.png" />
+    <Content Include="Gambar\appbar.refresh.png" />
     <Content Include="Gambar\icon.png" />
     <AndroidResource Include="icon.png" />
     <Content Include="Properties\Default.rd.xml" />

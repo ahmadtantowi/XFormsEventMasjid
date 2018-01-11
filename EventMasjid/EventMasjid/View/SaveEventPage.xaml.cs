@@ -19,14 +19,14 @@ namespace EventMasjid.View
         bool isNewEvent;
         string idEvent;
 
-        public SaveEventPage(Event events, bool isNewEvent = false)
+        public SaveEventPage(Event events = null, bool isNewEvent = true)
 		{
 			InitializeComponent();
             this.isNewEvent = isNewEvent;
             this.idEvent = events.Id_Event;
 
             imgDetail.Source = events.Gambar;
-            lblPelaksana.Text = events.Dkm_Pelaksana;
+            lblPelaksana.Text = MyDkm.Masjid_Dkm;
             lblAcara.Text = events.Nama_Event;
             lblPemateri.Text = events.Pemateri;
             lblLokasi.Text = events.Lokasi_Event;

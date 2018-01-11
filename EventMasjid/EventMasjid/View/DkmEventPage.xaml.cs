@@ -15,20 +15,19 @@ namespace EventMasjid.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DkmEventPage : ContentPage
 	{
+        EventViewModel eventViewModel = new EventViewModel();
+
 		public DkmEventPage ()
 		{
 			InitializeComponent ();
 
-            EventViewModel eventViewModel = new EventViewModel();
             eventViewModel.LoadByDkm();
             BindingContext = eventViewModel;
-
-            tiTambahkan.Clicked += (sender, e) => Navigation.PushAsync(new SaveEventPage(new Event(), true));
-            tiProfil.Clicked += (sender, e) => Navigation.PushAsync(new SaveDkmPage());
+            
             tiKeluarkan.Clicked += (sender, e) =>
             {
                 CrossSettings.Current.AddOrUpdateValue("isLogin", false);
-                Navigation.PushAsync(new HomePage());
+                Navigation.PopToRootAsync();
             };
         }
 
@@ -48,6 +47,14 @@ namespace EventMasjid.View
                 if (listview != null)
                     listview.SelectedItem = null;
             }
+        }
+
+        protected async void Navigasikan(object sender, EventArgs args)
+        {
+            string type = (string)((ToolbarItem)sender).CommandParameter;
+            Type pageType = Type.GetType("EventMasjid.View." + type, true);
+            Page page = (Page)Activator.CreateInstance(pageType);
+            await this.Navigation.PushAsync(page);
         }
     }
 }
