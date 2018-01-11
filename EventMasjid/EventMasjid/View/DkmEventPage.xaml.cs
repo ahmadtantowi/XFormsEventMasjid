@@ -21,14 +21,8 @@ namespace EventMasjid.View
 		{
 			InitializeComponent ();
 
-            eventViewModel.LoadByDkm();
+            Segarkan(null, null);
             BindingContext = eventViewModel;
-            
-            tiKeluarkan.Clicked += (sender, e) =>
-            {
-                CrossSettings.Current.AddOrUpdateValue("isLogin", false);
-                Navigation.PopToRootAsync();
-            };
         }
 
         protected void PadaItemDipilih(object sender, SelectedItemChangedEventArgs args)
@@ -49,12 +43,34 @@ namespace EventMasjid.View
             }
         }
 
+        protected async void Segarkan(object sender, EventArgs e)
+        {
+            await eventViewModel.LoadByDkm();
+        }
+
         protected async void Navigasikan(object sender, EventArgs args)
         {
             string type = (string)((ToolbarItem)sender).CommandParameter;
+            if (type.Contains("SaveDkmPage"))
+            {
+                await Navigation.PushAsync(new SaveDkmPage(false));
+                return;
+            }
+            if (type.Contains("SaveEventPage"))
+            {
+                await Navigation.PushAsync(new SaveEventPage(new Event(), true));
+                return;
+            }
+
             Type pageType = Type.GetType("EventMasjid.View." + type, true);
             Page page = (Page)Activator.CreateInstance(pageType);
             await this.Navigation.PushAsync(page);
+        }
+
+        public void Keluarkan(object sender, EventArgs e)
+        {
+            CrossSettings.Current.AddOrUpdateValue("isLogin", false);
+            Navigation.PopToRootAsync();
         }
     }
 }

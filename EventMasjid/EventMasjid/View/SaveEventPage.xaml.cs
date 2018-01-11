@@ -19,7 +19,7 @@ namespace EventMasjid.View
         bool isNewEvent;
         string idEvent;
 
-        public SaveEventPage(Event events = null, bool isNewEvent = true)
+        public SaveEventPage(Event events = null, bool isNewEvent = false)
 		{
 			InitializeComponent();
             this.isNewEvent = isNewEvent;

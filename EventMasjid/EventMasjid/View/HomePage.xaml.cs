@@ -51,7 +51,7 @@ namespace EventMasjid.View
             string type = (string)((ToolbarItem)sender).CommandParameter;
             if (type.Contains("DkmEventPage"))
             {
-                type = CrossSettings.Current.Contains("isLogin") ? "DkmEventPage" : "LoginPage";
+                type = CrossSettings.Current.GetValueOrDefault("isLogin", false) ? "DkmEventPage" : "LoginPage";
             }
             Type pageType = Type.GetType("EventMasjid.View." + type, true);
             Page page = (Page)Activator.CreateInstance(pageType);
