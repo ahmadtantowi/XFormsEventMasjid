@@ -4,7 +4,7 @@
              x:Class="EventMasjid.View.HomePage"
              Title="Event Masjid">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Segarkan" Order="Primary" x:Name="tiSegarkan" Icon="Gambar/appbar.refresh.png"/>
+        <ToolbarItem Text="Segarkan" Order="Primary" x:Name="tiSegarkan" Icon="appbar_refresh.png"/>
         <ToolbarItem Text="Kelola Acara" Order="Secondary" Clicked="Navigasikan" CommandParameter="DkmEventPage"/>
         <ToolbarItem Text="Tentang" Order="Secondary" Clicked="Navigasikan" CommandParameter="AboutPage"/>
     </ContentPage.ToolbarItems>

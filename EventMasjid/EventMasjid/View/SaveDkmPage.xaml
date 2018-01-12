@@ -4,9 +4,9 @@
              x:Class="EventMasjid.View.SaveDkmPage"
              Title="Kelola DKM">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Secondary" Clicked="Segarkan" Text="Segarkan" Icon="Gambar/appbar.refresh.png"/>
-        <ToolbarItem Order="Primary" Clicked="Hapuskan" Text="Hapus" Icon="Gambar/appbar.delete.png"/>
-        <ToolbarItem Order="Primary" Clicked="Simpankan" Text="Simpan" Icon="Gambar/appbar.save.png"/>
+        <ToolbarItem Order="Secondary" Clicked="Segarkan" Text="Segarkan" Icon="appbar_refresh.png"/>
+        <ToolbarItem Order="Primary" Clicked="Hapuskan" Text="Hapus" Icon="appbar_delete.png"/>
+        <ToolbarItem Order="Primary" Clicked="Simpankan" Text="Simpan" Icon="appbar_save.png"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>

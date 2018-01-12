@@ -104,11 +104,10 @@
     <None Include="EventMasjid.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Gambar\appbar.add.png" />
-    <Content Include="Gambar\appbar.delete.png" />
-    <Content Include="Gambar\appbar.refresh.png" />
-    <Content Include="Gambar\appbar.save.png" />
-    <Content Include="Gambar\icon.png" />
+    <Content Include="appbar_add.png" />
+    <Content Include="appbar_delete.png" />
+    <Content Include="appbar_refresh.png" />
+    <Content Include="appbar_save.png" />
     <AndroidResource Include="icon.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-100.png" />

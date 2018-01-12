@@ -18,7 +18,7 @@
     <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AndroidKeyStore>true</AndroidKeyStore>
+    <AndroidKeyStore>false</AndroidKeyStore>
     <AndroidSigningKeyStore>C:\Users\Ahmad\AppData\Local\Xamarin\Mono for Android\Keystore\EventMasjid\EventMasjid.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>EventMasjid123</AndroidSigningStorePass>
   </PropertyGroup>
@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -104,15 +107,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Gambar\icon.png" />
+    <AndroidResource Include="Resources\drawable\appbar_refresh.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Gambar\appbar.add.png" />
-    <AndroidResource Include="Resources\drawable\Gambar\appbar.refresh.png" />
+    <AndroidResource Include="Resources\drawable\appbar_save.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\drawable\Gambar\appbar.delete.png" />
-    <Content Include="Resources\drawable\Gambar\appbar.save.png" />
+    <AndroidResource Include="Resources\drawable\appbar_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\appbar_delete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

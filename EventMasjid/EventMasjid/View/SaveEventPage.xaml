@@ -4,8 +4,8 @@
              x:Class="EventMasjid.View.SaveEventPage"
              Title="Kelola Acara">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Primary" Clicked="Hapuskan" Text="Hapus" Icon="Gambar/appbar.delete.png"/>
-        <ToolbarItem Order="Primary" Clicked="Simpankan" Text="Simpan" Icon="Gambar/appbar.save.png"/>
+        <ToolbarItem Order="Primary" Clicked="Hapuskan" Text="Hapus" Icon="appbar_delete.png"/>
+        <ToolbarItem Order="Primary" Clicked="Simpankan" Text="Simpan" Icon="appbar_save.png"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
