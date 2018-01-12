@@ -47,7 +47,8 @@ namespace EventMasjid.View
                 Lokasi_Event = lblLokasi.Text,
                 Tlp_Event = lblKontak.Text,
                 //Waktu_Event = new DateTime(lblTanggal.Date.Year, lblTanggal.Date.Month, lblTanggal.Date.Day, lblWaktu.Time.Hours, lblWaktu.Time.Minutes, 0),
-                Waktu_Event = new DateTime(lblTanggal.Date.Year, lblTanggal.Date.Month, lblTanggal.Date.Day, lblWaktu.Time.Hours, lblWaktu.Time.Minutes, 0).ToString(),
+                //Waktu_Event = new DateTime(lblTanggal.Date.Year, lblTanggal.Date.Month, lblTanggal.Date.Day, lblWaktu.Time.Hours, lblWaktu.Time.Minutes, 0).ToString(),
+                Waktu_Event = string.Format("{0}-{1}-{2} {3}:{4}:{5}", lblTanggal.Date.Year, lblTanggal.Date.Month, lblTanggal.Date.Day, lblWaktu.Time.Hours, lblWaktu.Time.Minutes, lblWaktu.Time.Seconds),
             };
             Debug.WriteLine("id_event:{0} dkm_pelaksana:{1} nama_event:{2} pemateri:{3} lokasi_event:{4} tlp_event:{5} waktu_event:{6}",
                addEvent.Id_Event, addEvent.Dkm_Pelaksana, addEvent.Nama_Event, addEvent.Pemateri, addEvent.Lokasi_Event, addEvent.Tlp_Event, addEvent.Waktu_Event);
@@ -55,7 +56,8 @@ namespace EventMasjid.View
             var service = new DataService();
             if (await service.SaveEvent(addEvent, this.isNewEvent))
             {
-                await DisplayAlert("Info", "Rincian acara berhasil disimpan", "OK");
+                await DisplayAlert("Info", "Rincian acara berhasil disimpan, silahkan segarkan halaman", "OK");
+                await Navigation.PopAsync();
             }
             else
                 await DisplayAlert("Info", "Acara gagal disimpan.", "OK");
