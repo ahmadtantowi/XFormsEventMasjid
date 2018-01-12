@@ -29,7 +29,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Row="0" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Pelaksana:"/>
-                    <Label Grid.Row="1" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Acara:"/>
+                    <Label Grid.Row="1" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Nama Acara:"/>
                     <Label Grid.Row="2" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Pemateri:"/>
                     <Label Grid.Row="3" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Waktu dan tanggal:"/>
                     <Label Grid.Row="4" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Kontak:"/>
@@ -42,7 +42,7 @@
                         <TimePicker x:Name="lblWaktu" Format="24"/>
                         <DatePicker x:Name="lblTanggal"/>
                     </StackLayout>
-                    <Entry Grid.Row="4" Grid.Column="1" FontSize="Small" x:Name="lblKontak"/>
+                    <Entry Grid.Row="4" Grid.Column="1" FontSize="Small" x:Name="lblKontak" Keyboard="Telephone"/>
                     <Entry Grid.Row="5" Grid.Column="1" FontSize="Small" x:Name="lblLokasi"/>
                 </Grid>
             </StackLayout>

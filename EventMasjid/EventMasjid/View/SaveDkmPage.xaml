@@ -43,8 +43,8 @@
                     <Entry Grid.Row="2" Grid.Column="1" FontSize="Small" x:Name="lblPword" IsPassword="True"/>
                     <Entry Grid.Row="3" Grid.Column="1" FontSize="Small" x:Name="lblPword2" IsPassword="True"/>
                     <Entry Grid.Row="4" Grid.Column="1" FontSize="Small" x:Name="lblKetua"/>
-                    <Entry Grid.Row="5" Grid.Column="1" FontSize="Small" x:Name="lblTelp"/>
-                    <Entry Grid.Row="6" Grid.Column="1" FontSize="Small" x:Name="lblEmail"/>
+                    <Entry Grid.Row="5" Grid.Column="1" FontSize="Small" x:Name="lblTelp" Keyboard="Telephone"/>
+                    <Entry Grid.Row="6" Grid.Column="1" FontSize="Small" x:Name="lblEmail" Keyboard="Email"/>
                     <Entry Grid.Row="7" Grid.Column="1" FontSize="Small" x:Name="lblAlamat"/>
                 </Grid>
             </StackLayout>
