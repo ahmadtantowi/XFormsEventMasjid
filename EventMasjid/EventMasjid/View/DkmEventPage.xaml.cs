@@ -1,4 +1,5 @@
 ﻿using EventMasjid.Model;
+using EventMasjid.Service;
 using EventMasjid.ViewModel;
 using Plugin.Settings;
 using System;
@@ -23,6 +24,9 @@ namespace EventMasjid.View
 
             Segarkan(null, null);
             BindingContext = eventViewModel;
+
+            var service = new DataService();
+            var x = service.GetMyDkm();
         }
 
         protected void PadaItemDipilih(object sender, SelectedItemChangedEventArgs args)

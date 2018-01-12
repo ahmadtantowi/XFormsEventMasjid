@@ -2,11 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventMasjid.View.SaveDkmPage"
-             Title="Daftar DKM Baru">
+             Title="Kelola DKM">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Secondary" Clicked="Segarkan" Text="Segarkan" Icon="Gambar/appbar.refresh.png"/>
+        <ToolbarItem Order="Primary" Clicked="Hapuskan" Text="Hapus" Icon="Gambar/appbar.delete.png"/>
+        <ToolbarItem Order="Primary" Clicked="Simpankan" Text="Simpan" Icon="Gambar/appbar.save.png"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout  x:Name="slAdd" Padding="10" Orientation="Vertical">
-                <Image x:Name="imgAdd" Source="Gambar/icon.png" Margin="0,0,0,5" HorizontalOptions="FillAndExpand"/>
+                <Label x:Name="lblNotif" Text=""/>
+                <!--<Image x:Name="imgAdd" Source="Gambar/icon.png" Margin="0,0,0,5" HorizontalOptions="FillAndExpand"/>-->
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -26,23 +32,20 @@
                     <Label Grid.Row="0" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Nama DKM:"/>
                     <Label Grid.Row="1" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Nama akun DKM:"/>
                     <Label Grid.Row="2" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Kata sandi:"/>
-                    <Label Grid.Row="3" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Ketua DKM:"/>
-                    <Label Grid.Row="4" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Telepon:"/>
-                    <Label Grid.Row="5" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="E-mail:"/>
-                    <Label Grid.Row="6" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Alamat:"/>
+                    <Label Grid.Row="3" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Konfirmasi sandi:"/>
+                    <Label Grid.Row="4" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Ketua DKM:"/>
+                    <Label Grid.Row="5" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Telepon:"/>
+                    <Label Grid.Row="6" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="E-mail:"/>
+                    <Label Grid.Row="7" Grid.Column="0" FontAttributes="Bold" FontSize="Small" Text="Alamat:"/>
 
                     <Entry Grid.Row="0" Grid.Column="1" FontSize="Small" x:Name="lblDkm" IsEnabled="True"/>
-                    <Entry Grid.Row="1" Grid.Column="1" FontSize="Small" x:Name="lblUname" Placeholder="Nama akun dipergunakan untuk login!"/>
+                    <Entry Grid.Row="1" Grid.Column="1" FontSize="Small" x:Name="lblUname" Placeholder="Digunakan untuk login"/>
                     <Entry Grid.Row="2" Grid.Column="1" FontSize="Small" x:Name="lblPword" IsPassword="True"/>
-                    <Entry Grid.Row="3" Grid.Column="1" FontSize="Small" x:Name="lblKetua"/>
-                    <Entry Grid.Row="4" Grid.Column="1" FontSize="Small" x:Name="lblTelp"/>
-                    <Entry Grid.Row="5" Grid.Column="1" FontSize="Small" x:Name="lblEmail"/>
-                    <Entry Grid.Row="6" Grid.Column="1" FontSize="Small" x:Name="lblAlamat"/>
-
-                    <StackLayout Grid.Row="7" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End">
-                        <Button Text="Simpan" WidthRequest="120" Clicked="BtnTambahkan" BackgroundColor="Blue" TextColor="White"/>
-                        <Button Text="Batal" WidthRequest="120" Clicked="BtnBatalkan"/>
-                    </StackLayout>
+                    <Entry Grid.Row="3" Grid.Column="1" FontSize="Small" x:Name="lblPword2" IsPassword="True"/>
+                    <Entry Grid.Row="4" Grid.Column="1" FontSize="Small" x:Name="lblKetua"/>
+                    <Entry Grid.Row="5" Grid.Column="1" FontSize="Small" x:Name="lblTelp"/>
+                    <Entry Grid.Row="6" Grid.Column="1" FontSize="Small" x:Name="lblEmail"/>
+                    <Entry Grid.Row="7" Grid.Column="1" FontSize="Small" x:Name="lblAlamat"/>
                 </Grid>
             </StackLayout>
         </ScrollView>

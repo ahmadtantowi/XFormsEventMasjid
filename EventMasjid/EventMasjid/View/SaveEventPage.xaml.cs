@@ -25,6 +25,8 @@ namespace EventMasjid.View
             this.isNewEvent = isNewEvent;
             this.idEvent = events.Id_Event;
 
+            this.Title = isNewEvent ? "Buat Acara Baru" : "Ubah Rincian Acara";
+
             imgDetail.Source = events.Gambar;
             lblPelaksana.Text = MyDkm.Masjid_Dkm;
             lblAcara.Text = events.Nama_Event;
@@ -33,7 +35,7 @@ namespace EventMasjid.View
             lblKontak.Text = events.Tlp_Event;
 		}
         
-        async void BtnSimpankan(object sender, EventArgs e)
+        async void Simpankan(object sender, EventArgs e)
         {
             var addEvent = new Event()
             {
@@ -53,17 +55,30 @@ namespace EventMasjid.View
             var service = new DataService();
             if (await service.SaveEvent(addEvent, this.isNewEvent))
             {
-                await DisplayAlert("Info", "Data berhasil disimpan", "OK");
+                await DisplayAlert("Info", "Rincian acara berhasil disimpan", "OK");
             }
             else
-            {
-                await DisplayAlert("Info", "Data gagal disimpan.", "OK");
-            }
+                await DisplayAlert("Info", "Acara gagal disimpan.", "OK");
         }
 
-        void BtnBatalkan(object sender, EventArgs e)
+        async void Hapuskan(Object sender, EventArgs e)
         {
-            Navigation.PopModalAsync(true);
+            var service = new DataService();
+            if (!this.isNewEvent)
+            {
+                if (await DisplayAlert("Hapus", "Apa Anda yakin ingin menghapus acara ini?", "Ya", "Tidak"))
+                {
+                    if (await service.DeleteDkmEvent(this.idEvent, false))
+                    {
+                        await DisplayAlert("Info", "Acara berhasil dihapus", "OK");
+                        await Navigation.PopAsync();
+                    }
+                    else
+                        await DisplayAlert("Info", "Acara gagal dihapus", "OK");
+                }
+            }
+            else
+                await Navigation.PopAsync();
         }
 	}
 }

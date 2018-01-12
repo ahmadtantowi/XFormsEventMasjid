@@ -2,10 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventMasjid.View.SaveEventPage"
-             Title="Tambah Acara">
+             Title="Kelola Acara">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Primary" Clicked="Hapuskan" Text="Hapus" Icon="Gambar/appbar.delete.png"/>
+        <ToolbarItem Order="Primary" Clicked="Simpankan" Text="Simpan" Icon="Gambar/appbar.save.png"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout  x:Name="slDetail" Padding="10" Orientation="Vertical">
+                <Label x:Name="lblNotif"/>
                 <Image x:Name="imgDetail" Source="Gambar/icon.png" Margin="0,0,0,5" HorizontalOptions="FillAndExpand"/>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -39,11 +44,6 @@
                     </StackLayout>
                     <Entry Grid.Row="4" Grid.Column="1" FontSize="Small" x:Name="lblKontak"/>
                     <Entry Grid.Row="5" Grid.Column="1" FontSize="Small" x:Name="lblLokasi"/>
-
-                    <StackLayout Grid.Row="6" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End">
-                        <Button Text="Simpan" WidthRequest="120" Clicked="BtnSimpankan" BackgroundColor="Blue" TextColor="White"/>
-                        <Button Text="Batal" WidthRequest="120" Clicked="BtnBatalkan"/>
-                    </StackLayout>
                 </Grid>
             </StackLayout>
         </ScrollView>

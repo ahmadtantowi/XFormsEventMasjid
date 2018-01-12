@@ -105,7 +105,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Gambar\appbar.add.png" />
+    <Content Include="Gambar\appbar.delete.png" />
     <Content Include="Gambar\appbar.refresh.png" />
+    <Content Include="Gambar\appbar.save.png" />
     <Content Include="Gambar\icon.png" />
     <AndroidResource Include="icon.png" />
     <Content Include="Properties\Default.rd.xml" />
@@ -157,6 +159,9 @@
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>10.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugin.Media">
+      <Version>3.1.2</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>3.1.1</Version>

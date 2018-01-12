@@ -1,5 +1,6 @@
 ﻿using EventMasjid.Model;
 using EventMasjid.Service;
+using Plugin.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,15 @@ namespace EventMasjid.View
 	public partial class SaveDkmPage : ContentPage
 	{
         bool isNewDkm;
+        string idDkm;
 
-		public SaveDkmPage (bool isNewDkm = false)
+		public SaveDkmPage(bool isNewDkm = false)
 		{
-			InitializeComponent ();
+            InitializeComponent();
             this.isNewDkm = isNewDkm;
+            this.idDkm = MyDkm.Id_Dkm;
+
+            this.Title = isNewDkm ? "Buat Akun Baru" : "Ubah Profil DKM";
 
             lblUname.Text = isNewDkm ? null : MyDkm.Uname_Dkm;
             lblPword.Text = isNewDkm ? null : MyDkm.Pass_Dkm;
@@ -30,12 +35,20 @@ namespace EventMasjid.View
             lblKetua.Text = isNewDkm ? null : MyDkm.Ketua_Dkm;
 
             lblUname.IsEnabled = isNewDkm ? true : false;
+            Segarkan(null, null);
 		}
 
-        async void BtnTambahkan (object sender, EventArgs e)
+        async void Simpankan(object sender, EventArgs e)
         {
+            //if (!lblPword2.Text.Contains(lblPword.Text))
+            //{
+            //    lblNotif.Text = "Isi kata sandi dengan benar!";
+            //    return;
+            //}
+
             var addDkm = new Dkm()
             {
+                Id_Dkm = idDkm,
                 Uname_Dkm = lblUname.Text,
                 Pass_Dkm = lblPword.Text,
                 Masjid_Dkm = lblDkm.Text,
@@ -48,21 +61,44 @@ namespace EventMasjid.View
             DataService service = new DataService();
             if (await service.SaveDkm(addDkm, isNewDkm))
             {
-                await DisplayAlert("Info", "Data berhasil disimpan", "OK");
+                await DisplayAlert("Info", "Dkm berhasil disimpan", "OK");
 
                 if (isNewDkm)
                     Navigation.InsertPageBefore(new DkmEventPage(), this);
-                await Navigation.PopAsync();
+
+                CrossSettings.Current.AddOrUpdateValue("isLogin", false);
+                await Navigation.PopToRootAsync();
             }
             else
             {
-                await DisplayAlert("Info", "Data gagal disimpan.", "OK");
+                await DisplayAlert("Info", "Dkm gagal disimpan.", "OK");
             }
         }
 
-        void BtnBatalkan(object sender, EventArgs e)
+        async void Hapuskan(Object sender, EventArgs e)
         {
-            Navigation.PopAsync(true);
+            var service = new DataService();
+            if (!this.isNewDkm)
+            {
+                if (await DisplayAlert("Hapus", "Apa Anda yakin ingin menghapus DKM Anda?\nIni tidak dapat dikembalikan", "Ya", "Tidak"))
+                {
+                    if (await service.DeleteDkmEvent(this.idDkm, true))
+                    {
+                        await DisplayAlert("Info", "DKM berhasil dihapus", "OK");
+                        await Navigation.PopToRootAsync();
+                    }
+                    else
+                        await DisplayAlert("Info", "DKM gagal dihapus", "OK");
+                }
+            }
+            else
+                await Navigation.PopAsync();
+        }
+
+        async void Segarkan(object sender, EventArgs e)
+        {
+            var service = new DataService();
+            lblNotif.Text = await service.GetMyDkm();
         }
     }
 }

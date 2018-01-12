@@ -12,16 +12,14 @@ namespace EventMasjid.Helper
 
         public const string EDIT_URL = BASE_URL + "Edit";
 
+        public const string DELETE_URL = BASE_URL + "Delete";
+
         public const string DKM_URL = BASE_URL + "Dkm";
 
         public const string DKM_URL_LOGIN = BASE_URL + "Dkm?Uname_Dkm={0}&Pass_Dkm={1}";
 
         public const string DKM_URL_EVENT= BASE_URL + "Dkm?Uname_Dkm={0}";
 
-        public const string DKM_URL_CRUD = BASE_URL + "Dkm/{0}";
-
         public const string EVENT_URL = BASE_URL + "Pull";
-
-        public const string EVENT_URL_CRUD = BASE_URL + "Pull/{0}";
     }
 }

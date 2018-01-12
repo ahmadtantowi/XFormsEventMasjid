@@ -2,6 +2,7 @@
 using EventMasjid.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Plugin.Settings;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,7 +19,7 @@ namespace EventMasjid.Service
         {
             var uriLogin = new Uri(string.Format(UrlHelper.DKM_URL_LOGIN, username, password));
 
-            using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(60) })
+            using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) })
             {
                 try
                 {
@@ -26,6 +27,36 @@ namespace EventMasjid.Service
 
                     if (!respone.IsSuccessStatusCode)
                         return false;
+
+                    CrossSettings.Current.AddOrUpdateValue("uname", username);
+                    CrossSettings.Current.AddOrUpdateValue("pass", password);
+
+                    Debug.WriteLine("URI login: " + uriLogin.ToString());
+                    Debug.WriteLine("Respon service: " + respone.ToString());
+
+                    await GetMyDkm();
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(@"Kesalahan {0}", ex.Message);
+                    return false;
+                }
+            }
+        }
+
+        public async Task<string> GetMyDkm()
+        {
+            var uriMyDkm = new Uri(string.Format(UrlHelper.DKM_URL_LOGIN, CrossSettings.Current.GetValueOrDefault("uname", null), CrossSettings.Current.GetValueOrDefault("pass", null)));
+
+            using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(60) })
+            {
+                try
+                {
+                    var respone = await client.GetAsync(uriMyDkm);
+                    if (!respone.IsSuccessStatusCode)
+                        return "Rincian DKM gagal diambil, silakan Segarkan halaman!";
 
                     var byteResult = await respone.Content.ReadAsByteArrayAsync();
                     var result = Encoding.UTF8.GetString(byteResult, 0, byteResult.Length);
@@ -43,25 +74,19 @@ namespace EventMasjid.Service
                     MyDkm.Ketua_Dkm = myDkm.Ketua_Dkm;
                     MyDkm.Masjid_Dkm = myDkm.Masjid_Dkm;
 
-
-                    Debug.WriteLine("URI login: " + uriLogin.ToString());
-                    Debug.WriteLine("Respon service: " + respone.ToString());
-                    Debug.WriteLine("Hasilnya: " + result.ToString());
-                    Debug.WriteLine("Id_Dkm:{0} Uname_Dkm:{1}", myDkm.Id_Dkm, myDkm.Uname_Dkm);
-
-                    return true;
+                    return null;
                 }
-                catch (Exception ex)
+                catch(Exception ex)
                 {
                     Debug.WriteLine(@"Kesalahan {0}", ex.Message);
-                    return false;
+                    return "Terjadi kesalahan, silakan Segarkan halaman!";
                 }
             }
         }
 
         public async Task<List<Dkm>> GetListDkm()
         {
-            using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(60) })
+            using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) })
             {
                 try
                 {
@@ -89,7 +114,7 @@ namespace EventMasjid.Service
 
         public async Task<List<Event>> GetListEvent()
         {
-            using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(60) })
+            using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) })
             {
                 try
                 {
@@ -120,7 +145,7 @@ namespace EventMasjid.Service
 
         public async Task<List<Event>> GetMyEvent()
         {
-            using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(60) })
+            using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) })
             {
                 try
                 {
@@ -152,14 +177,14 @@ namespace EventMasjid.Service
         /// Service untuk menyimpan data Event Masjid dengan method POST dan PUT
         /// </summary>
         /// <param name="events">data event yang akan disimpan</param>
-        /// <param name="isNewEvent">true:POST; false:PUT</param>
+        /// <param name="isNewEvent">true: buat baru; false: update</param>
         /// <returns></returns>
         public async Task<bool> SaveEvent(Event events, bool isNewEvent = false)
         {
-            var uriPost = new Uri(string.Format(UrlHelper.EVENT_URL));
-            var uriPut = new Uri(string.Format(UrlHelper.EDIT_URL));
+            var uriCreate = new Uri(string.Format(UrlHelper.EVENT_URL));
+            var uriUpdate = new Uri(string.Format(UrlHelper.EDIT_URL));
 
-            using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(60) })
+            using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) })
             {
                 try
                 {
@@ -170,9 +195,9 @@ namespace EventMasjid.Service
 
                     HttpResponseMessage respone = null;
                     if(isNewEvent)
-                        respone = await client.PostAsync(uriPost, content);
+                        respone = await client.PostAsync(uriCreate, content);
                     else
-                        respone = await client.PutAsync(uriPut,content);
+                        respone = await client.PostAsync(uriUpdate,content);
 
                     if (!respone.IsSuccessStatusCode)
                         return false;
@@ -188,19 +213,27 @@ namespace EventMasjid.Service
         }
 
         /// <summary>
-        /// Service untuk menghapus data Event Masjid
+        /// Service untuk menghapus data DKM atau Event
         /// </summary>
-        /// <param name="idEvent">ID data yang akan dihapus</param>
+        /// <param name="id">id data yang ingin dihapus</param>
+        /// <param name="isDkm">true: data DKM; false: data Event</param>
         /// <returns></returns>
-        public async Task<bool> DeleteEvent(string idEvent)
+        public async Task<bool> DeleteDkmEvent(string id, bool isDkm = false)
         {
-            var uriDelete = new Uri(string.Format(UrlHelper.EVENT_URL_CRUD, idEvent));
+            var uriDelDkm = new Uri(string.Format(UrlHelper.DELETE_URL + "?Id_Dkm={0}", id));
+            var uriDelEvent = new Uri(string.Format(UrlHelper.DELETE_URL + "?Id_Event={0}", id));
 
-            using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(60) })
+            using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(10) })
             {
                 try
                 {
-                    var respone = await client.DeleteAsync(uriDelete);
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    HttpResponseMessage respone = null;
+                    if (isDkm)
+                        respone = await client.GetAsync(uriDelDkm);
+                    else
+                        respone = await client.GetAsync(uriDelEvent);
+                    Debug.WriteLine(respone.ToString());
 
                     if (!respone.IsSuccessStatusCode)
                         return false;
@@ -219,14 +252,14 @@ namespace EventMasjid.Service
         /// Service untuk menyimpan data Event Masjid dengan method POST dan PUT
         /// </summary>
         /// <param name="dkm">data dkm yang akan disimpan</param>
-        /// <param name="isNewDkm">true:POST; false:PUT</param>
+        /// <param name="isNewDkm">true: buat baru; false: update</param>
         /// <returns></returns>
         public async Task<bool> SaveDkm(Dkm dkm, bool isNewDkm = false)
         {
-            var uriPost = new Uri(string.Format(UrlHelper.DKM_URL));
-            var uriPut = new Uri(string.Format(UrlHelper.EDIT_URL));
+            var uriCreate = new Uri(string.Format(UrlHelper.DKM_URL));
+            var uriUpdate = new Uri(string.Format(UrlHelper.EDIT_URL));
 
-            using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(60) })
+            using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) })
             {
                 try
                 {
@@ -237,9 +270,9 @@ namespace EventMasjid.Service
 
                     HttpResponseMessage respone = null;
                     if (isNewDkm)
-                        respone = await client.PostAsync(uriPost, content);
+                        respone = await client.PostAsync(uriCreate, content);
                     else
-                        respone = await client.PutAsync(uriPut, content);
+                        respone = await client.PostAsync(uriUpdate, content);
 
                     Debug.WriteLine(content.ToString());
                     Debug.WriteLine(respone.ToString());
