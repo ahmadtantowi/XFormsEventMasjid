@@ -75,6 +75,7 @@ namespace EventMasjid.View
         {
             CrossSettings.Current.AddOrUpdateValue("isLogin", false);
             Navigation.PopToRootAsync();
+//            tes
         }
     }
 }
