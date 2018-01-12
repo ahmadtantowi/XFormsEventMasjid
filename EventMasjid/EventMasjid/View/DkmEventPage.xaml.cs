@@ -13,6 +13,7 @@ using Xamarin.Forms.Xaml;
 
 namespace EventMasjid.View
 {
+//class handle dkm
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DkmEventPage : ContentPage
 	{
